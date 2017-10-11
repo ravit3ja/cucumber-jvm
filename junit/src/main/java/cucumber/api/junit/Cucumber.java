@@ -15,6 +15,7 @@ import cucumber.runtime.junit.FeatureRunner;
 import cucumber.runtime.junit.JUnitOptions;
 import cucumber.runtime.junit.JUnitReporter;
 import cucumber.runtime.model.CucumberFeature;
+import cucumber.util.log.LoggerFactory;
 import org.junit.runner.Description;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.ParentRunner;
@@ -58,6 +59,7 @@ public class Cucumber extends ParentRunner<FeatureRunner> {
 
         RuntimeOptionsFactory runtimeOptionsFactory = new RuntimeOptionsFactory(clazz);
         RuntimeOptions runtimeOptions = runtimeOptionsFactory.create();
+        LoggerFactory.setVerbose(runtimeOptions.isVerbose());
 
         ResourceLoader resourceLoader = new MultiLoader(classLoader);
         runtime = createRuntime(resourceLoader, classLoader, runtimeOptions);
